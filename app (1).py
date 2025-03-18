@@ -7,13 +7,12 @@ from pdf2image import convert_from_path
 import pytesseract
 import pdfplumber
 
-# 🔹 Must be the first Streamlit command
+
 st.set_page_config(page_title="Resume Analyzer", layout="wide")
 
-# Load environment variables
 load_dotenv('/content/env.txt')
 
-# Set Google Gemini API Key
+
 api_key =  "AIzaSyCmqzjbbM9mAlBKHHZdjeCqsP9jFEFC2Ro"   # Ensure this matches your .env variable
 if not api_key:
     st.error("❌ API Key not found! Make sure to set `GOOGLE_GEMINI_API_KEY` in your `.env` file.")
@@ -37,7 +36,7 @@ def extract_text_from_pdf(pdf_path):
     except Exception as e:
         st.warning(f"⚠ Direct text extraction failed: {e}")
 
-    # Fallback: OCR for image-based PDFs
+   
     st.info("🔍 Using OCR for image-based PDF...")
     try:
         images = convert_from_path(pdf_path)
@@ -87,7 +86,7 @@ def analyze_resume(resume_text, job_description=None):
     return response.text.strip()
 
 
-# 🏠 Streamlit App UI
+
 st.title("📄 AI Resume Analyzer")
 st.write("Analyze your resume and compare it with job descriptions using **Google Gemini AI**.")
 
@@ -99,7 +98,7 @@ with col1:
 with col2:
     job_description = st.text_area("📝 Enter Job Description", placeholder="Paste the job description here...")
 
-# Ensure resume is uploaded
+
 if uploaded_file:
     st.success("✅ Resume uploaded successfully!")
 
@@ -121,11 +120,3 @@ if uploaded_file:
 else:
     st.warning("⚠ Please upload a resume in **PDF format**.")
 
-st.markdown("---")
-st.markdown(
-    """<p style='text-align: center;'>
-    Powered by <b>Streamlit</b> & <b>Google Gemini AI</b> | 
-    Developed by <a href="https://www.linkedin.com/in/dutta-sujoy/" target="_blank" style='text-decoration: none; color: #FFFFFF'><b>Sujoy Dutta</b></a>
-    </p>""",
-    unsafe_allow_html=True
-)
