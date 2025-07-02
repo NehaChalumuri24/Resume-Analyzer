@@ -93,7 +93,7 @@ st.write("Analyze your resume and compare it with job descriptions using **Googl
 col1, col2 = st.columns(2)
 
 with col1:
-    uploaded_file = st.file_uploader("📂 Upload your resume (PDF)", type=["pdf"])
+    uploaded_file = st.file_uploader("📂 Upload your resume📄 (PDF)", type=["pdf"])
 
 with col2:
     job_description = st.text_area("📝 Enter Job Description", placeholder="Paste the job description here...")
